@@ -46,7 +46,7 @@ public class LoginValidator extends HttpServlet {
                 //      ResultSet rs = null;
                 //      Statement stmt = con.createStatement();
                 //      rs = stmt.executeQuery("select * from users where username='" + user + "' and password='" + pass + "'");
-                // *** Replaced with SQL Injection using PreparedStatement recommended by Checkmarx
+                // *** Added PreparedStatement recommended by Checkmarx
                 ResultSet rs = null;
                 String sql = "select * from users where username=? and password=?";
                 PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -61,7 +61,7 @@ public class LoginValidator extends HttpServlet {
                     //      session.setAttribute("userid", rs.getString("id"));
                     //      session.setAttribute("user", rs.getString("username"));
                     //      session.setAttribute("avatar", rs.getString("avatar"));
-                    // *** Replaced with Stored XSS using StringEscapeUtils recommended by Checkmarx
+                    // *** Added StringEscapeUtils recommended by Checkmarx
                     String id = StringEscapeUtils.escapeHtml4(rs.getString("id"));
                     String dbusername = StringEscapeUtils.escapeHtml4(rs.getString("username"));
                     String avatar = StringEscapeUtils.escapeHtml4(rs.getString("avatar"));
